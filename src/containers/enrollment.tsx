@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import clsx from 'clsx';
 
 import Conditions from '../components/conditions';
 import DemographicInformation from '../components/demographic-info';
@@ -26,47 +25,24 @@ const Enrollment: React.FunctionComponent = (): React.ReactElement => {
     Terms,
   ];
 
-  const submitHanler = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    if (step !== 4) {
-      setStep(step => step + 1);
-    } else {
-      console.log('Done!');
-    }
-  };
-
   return (
     <div className='flex-1'>
       <h1 className='my-12 text-2xl font-light text-center sm:font-bold sm:text-3xl'>
         Patient Enrollment
       </h1>
       <EnrollmentContext.Provider
-        value={{ demographic, setDemographic, conditions, setConditions }}
+        value={{
+          demographic,
+          setDemographic,
+          conditions,
+          setConditions,
+          step,
+          setStep,
+        }}
       >
         <section>
-          <Stepper length={steps.length} step={step} onTap={setStep} />
-          <form onSubmit={submitHanler}>
-            {React.createElement(steps[step])}
-            <div className='flex justify-between mt-6'>
-              <button
-                className={clsx(
-                  'px-6 py-2 text-base font-bold transition-colors bg-white border border-black rounded-full hover:bg-yellow-500 focus:outline-none active:bg-yellow-300',
-                  !step && 'opacity-40 pointer-events-none'
-                )}
-                onClick={() => setStep(step => step - 1)}
-                disabled={!step}
-                type='button'
-              >
-                Back
-              </button>
-              <button
-                className='px-6 py-2 text-base font-bold transition-colors bg-white border border-black rounded-full hover:bg-yellow-500 focus:outline-none active:bg-yellow-300'
-                type='submit'
-              >
-                Next
-              </button>
-            </div>
-          </form>
+          <Stepper length={steps.length} />
+          {React.createElement(steps[step])}
         </section>
       </EnrollmentContext.Provider>
     </div>

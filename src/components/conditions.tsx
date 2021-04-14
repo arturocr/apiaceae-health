@@ -7,7 +7,7 @@ import useEnrollment from '../hooks/useEnrollment';
 import { camelize } from '../utils';
 
 const Conditions: React.FunctionComponent = (): React.ReactElement => {
-  const { conditions, setConditions } = useEnrollment();
+  const { conditions, setConditions, setStep } = useEnrollment();
   const [searchText, setSearchText] = useState<string>('');
 
   const toggleCondition = (condition: string) => {
@@ -35,7 +35,7 @@ const Conditions: React.FunctionComponent = (): React.ReactElement => {
     }));
 
   return (
-    <fieldset>
+    <form>
       <h2 className='mb-3 text-2xl font-light'>Conditions</h2>
       <p className='my-3'>
         Please select your medical conditions by tapping on them.
@@ -93,7 +93,23 @@ const Conditions: React.FunctionComponent = (): React.ReactElement => {
           <>No conditions match.</>
         )}
       </div>
-    </fieldset>
+
+      <div className='flex justify-between mt-6'>
+        <button
+          className='px-6 py-2 text-base font-bold transition-colors bg-white border border-black rounded-full hover:bg-yellow-500 focus:outline-none active:bg-yellow-300'
+          onClick={() => setStep(step => step - 1)}
+          type='button'
+        >
+          Back
+        </button>
+        <button
+          className='px-6 py-2 text-base font-bold transition-colors bg-white border border-black rounded-full hover:bg-yellow-500 focus:outline-none active:bg-yellow-300'
+          type='submit'
+        >
+          Next
+        </button>
+      </div>
+    </form>
   );
 };
 

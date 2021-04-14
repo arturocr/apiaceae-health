@@ -21,4 +21,6 @@ export interface IEnrollmentContext {
   setConditions: Dispatch<SetStateAction<string[]>>;
   medicalQuestions?: any;
   termsAccepted?: boolean; //!TODO: Must not be optional
+  step: number;
+  setStep: Dispatch<SetStateAction<number>>;
 }

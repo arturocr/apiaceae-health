@@ -1,38 +1,49 @@
+import clsx from 'clsx';
 import React from 'react';
+import { useForm } from 'react-hook-form';
+
 import useEnrollment from '../hooks/useEnrollment';
+import { IDemographicState } from '../types/context';
 
 const DemographicInformation: React.FunctionComponent = (): React.ReactElement => {
-  const { demographic, setDemographic } = useEnrollment();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IDemographicState>();
+  const { demographic, setDemographic, setStep } = useEnrollment();
 
-  const handleChange = (e: React.BaseSyntheticEvent) => {
-    setDemographic(prevValues => ({
-      ...prevValues,
-      [e.target.name]: e.target.value,
-    }));
+  const onSubmit = (data: IDemographicState) => {
+    setDemographic(data);
+    setStep(step => step + 1);
   };
 
   return (
-    <fieldset>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <h2 className='mb-3 text-2xl font-light'>Demographic Information</h2>
       <div className='flex flex-col md:flex-row md:space-x-4'>
         <label className='flex-1 mt-2'>
           <span>First Name</span>
           <input
-            className='block w-full mt-1'
+            className={clsx(
+              'block w-full mt-1',
+              errors.firstName && 'error-field'
+            )}
             defaultValue={demographic.firstName}
-            name='firstName'
-            onChange={handleChange}
             type='text'
+            {...register('firstName', { required: true })}
           />
         </label>
         <label className='flex-1 mt-2'>
           <span>Last Name</span>
           <input
-            className='block w-full mt-1'
+            className={clsx(
+              'block w-full mt-1',
+              errors.lastName && 'error-field'
+            )}
             defaultValue={demographic.lastName}
-            name='lastName'
-            onChange={handleChange}
             type='text'
+            {...register('lastName', { required: true })}
           />
         </label>
       </div>
@@ -40,12 +51,14 @@ const DemographicInformation: React.FunctionComponent = (): React.ReactElement =
         <label className='flex-1 mt-2'>
           <span>Gender Identity</span>
           <select
-            className='block w-full mt-1'
+            className={clsx(
+              'block w-full mt-1',
+              errors.gender && 'error-field'
+            )}
             defaultValue={demographic.gender}
-            name='gender'
-            onChange={handleChange}
+            {...register('gender', { required: true })}
           >
-            <option>Select an option</option>
+            <option value=''>Select an option</option>
             <option value='woman'>Woman</option>
             <option value='man'>Man</option>
             <option value='trans'>Transgender</option>
@@ -56,11 +69,13 @@ const DemographicInformation: React.FunctionComponent = (): React.ReactElement =
         <label className='flex-1 mt-2'>
           <span>Date of Birth</span>
           <input
-            className='block w-full mt-1'
+            className={clsx(
+              'block w-full mt-1',
+              errors.birthDate && 'error-field'
+            )}
             defaultValue={demographic.birthDate}
-            name='birthDate'
-            onChange={handleChange}
             type='date'
+            {...register('birthDate', { required: true })}
           />
         </label>
       </div>
@@ -68,21 +83,24 @@ const DemographicInformation: React.FunctionComponent = (): React.ReactElement =
         <label className='flex-1 mt-2'>
           <span>Email</span>
           <input
-            className='block w-full mt-1'
+            className={clsx(
+              'block w-full mt-1',
+              errors.birthDate && 'error-field'
+            )}
             defaultValue={demographic.email}
-            name='email'
-            onChange={handleChange}
             type='email'
+            {...register('email', {
+              pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+            })}
           />
         </label>
         <label className='flex-1 mt-2'>
           <span>Phone Number</span>
           <input
-            className='block w-full mt-1'
+            className={clsx('block w-full mt-1', errors.phone && 'error-field')}
             defaultValue={demographic.phone}
-            name='phone'
-            onChange={handleChange}
             type='text'
+            {...register('phone', { required: true })}
           />
         </label>
       </div>
@@ -90,21 +108,22 @@ const DemographicInformation: React.FunctionComponent = (): React.ReactElement =
         <label className='flex-1 mt-2'>
           <span>Street Address</span>
           <input
-            className='block w-full mt-1'
+            className={clsx(
+              'block w-full mt-1',
+              errors.street && 'error-field'
+            )}
             defaultValue={demographic.street}
-            name='street'
-            onChange={handleChange}
             type='text'
+            {...register('street', { required: true })}
           />
         </label>
         <label className='flex-1 mt-2'>
           <span>City</span>
           <input
-            className='block w-full mt-1'
+            className={clsx('block w-full mt-1', errors.city && 'error-field')}
             defaultValue={demographic.city}
-            name='city'
-            onChange={handleChange}
             type='text'
+            {...register('city', { required: true })}
           />
         </label>
       </div>
@@ -112,21 +131,19 @@ const DemographicInformation: React.FunctionComponent = (): React.ReactElement =
         <label className='flex-1 mt-2'>
           <span>State</span>
           <input
-            className='block w-full mt-1'
+            className={clsx('block w-full mt-1', errors.state && 'error-field')}
             defaultValue={demographic.state}
-            name='state'
-            onChange={handleChange}
             type='text'
+            {...register('state', { required: true })}
           />
         </label>
         <label className='flex-1 mt-2'>
           <span>Zip</span>
           <input
-            className='block w-full mt-1'
+            className={clsx('block w-full mt-1', errors.zip && 'error-field')}
             defaultValue={demographic.zip}
-            name='zip'
-            onChange={handleChange}
             type='text'
+            {...register('zip', { required: true })}
           />
         </label>
       </div>
@@ -134,12 +151,14 @@ const DemographicInformation: React.FunctionComponent = (): React.ReactElement =
         <label className='flex-1 mt-2'>
           <span>Marital Status</span>
           <select
-            className='block w-full mt-1'
+            className={clsx(
+              'block w-full mt-1',
+              errors.maritalStatus && 'error-field'
+            )}
             defaultValue={demographic.maritalStatus}
-            name='maritalStatus'
-            onChange={handleChange}
+            {...register('maritalStatus', { required: true })}
           >
-            <option>Select an option</option>
+            <option value=''>Select an option</option>
             <option value='married'>Married</option>
             <option value='single'>Single</option>
             <option value='divorced'>Divorced</option>
@@ -150,7 +169,15 @@ const DemographicInformation: React.FunctionComponent = (): React.ReactElement =
           </select>
         </label>
       </div>
-    </fieldset>
+      <div className='flex justify-end mt-6'>
+        <button
+          className='px-6 py-2 text-base font-bold transition-colors bg-white border border-black rounded-full hover:bg-yellow-500 focus:outline-none active:bg-yellow-300'
+          type='submit'
+        >
+          Next
+        </button>
+      </div>
+    </form>
   );
 };
 

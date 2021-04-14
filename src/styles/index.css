@@ -41,4 +41,8 @@
   [type='radio'] {
     @apply text-yellow-500 focus:ring-yellow-500;
   }
+  .error-field,
+  .error-field:focus {
+    @apply border-red-500 bg-red-50 ring-red-500;
+  }
 }

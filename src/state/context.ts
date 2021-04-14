@@ -21,6 +21,8 @@ export const defaultState: IEnrollmentContext = {
   setConditions: () => {},
   medicalQuestions: null,
   termsAccepted: false,
+  step: 0,
+  setStep: () => {},
 };
 
 const EnrollmentContext: React.Context<IEnrollmentContext> = React.createContext(
