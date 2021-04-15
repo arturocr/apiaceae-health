@@ -1,17 +1,19 @@
-import clsx from 'clsx';
 import React from 'react';
+import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
 
 import useEnrollment from '../hooks/useEnrollment';
 import { IDemographicState } from '../types/context';
 
 const DemographicInformation: React.FunctionComponent = (): React.ReactElement => {
+  const { demographic, setDemographic, setStep } = useEnrollment();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IDemographicState>();
-  const { demographic, setDemographic, setStep } = useEnrollment();
+  } = useForm<IDemographicState>({
+    defaultValues: demographic,
+  });
 
   const onSubmit = (data: IDemographicState) => {
     setDemographic(data);
@@ -29,7 +31,6 @@ const DemographicInformation: React.FunctionComponent = (): React.ReactElement =
               'block w-full mt-1',
               errors.firstName && 'error-field'
             )}
-            defaultValue={demographic.firstName}
             type='text'
             {...register('firstName', { required: true })}
           />
@@ -41,7 +42,6 @@ const DemographicInformation: React.FunctionComponent = (): React.ReactElement =
               'block w-full mt-1',
               errors.lastName && 'error-field'
             )}
-            defaultValue={demographic.lastName}
             type='text'
             {...register('lastName', { required: true })}
           />
@@ -55,7 +55,6 @@ const DemographicInformation: React.FunctionComponent = (): React.ReactElement =
               'block w-full mt-1',
               errors.gender && 'error-field'
             )}
-            defaultValue={demographic.gender}
             {...register('gender', { required: true })}
           >
             <option value=''>Select an option</option>
@@ -73,7 +72,6 @@ const DemographicInformation: React.FunctionComponent = (): React.ReactElement =
               'block w-full mt-1',
               errors.birthDate && 'error-field'
             )}
-            defaultValue={demographic.birthDate}
             type='date'
             {...register('birthDate', { required: true })}
           />
@@ -87,9 +85,9 @@ const DemographicInformation: React.FunctionComponent = (): React.ReactElement =
               'block w-full mt-1',
               errors.birthDate && 'error-field'
             )}
-            defaultValue={demographic.email}
             type='email'
             {...register('email', {
+              required: true,
               pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
             })}
           />
@@ -98,7 +96,6 @@ const DemographicInformation: React.FunctionComponent = (): React.ReactElement =
           <span>Phone Number</span>
           <input
             className={clsx('block w-full mt-1', errors.phone && 'error-field')}
-            defaultValue={demographic.phone}
             type='text'
             {...register('phone', { required: true })}
           />
@@ -112,7 +109,6 @@ const DemographicInformation: React.FunctionComponent = (): React.ReactElement =
               'block w-full mt-1',
               errors.street && 'error-field'
             )}
-            defaultValue={demographic.street}
             type='text'
             {...register('street', { required: true })}
           />
@@ -121,7 +117,6 @@ const DemographicInformation: React.FunctionComponent = (): React.ReactElement =
           <span>City</span>
           <input
             className={clsx('block w-full mt-1', errors.city && 'error-field')}
-            defaultValue={demographic.city}
             type='text'
             {...register('city', { required: true })}
           />
@@ -132,7 +127,6 @@ const DemographicInformation: React.FunctionComponent = (): React.ReactElement =
           <span>State</span>
           <input
             className={clsx('block w-full mt-1', errors.state && 'error-field')}
-            defaultValue={demographic.state}
             type='text'
             {...register('state', { required: true })}
           />
@@ -141,7 +135,6 @@ const DemographicInformation: React.FunctionComponent = (): React.ReactElement =
           <span>Zip</span>
           <input
             className={clsx('block w-full mt-1', errors.zip && 'error-field')}
-            defaultValue={demographic.zip}
             type='text'
             {...register('zip', { required: true })}
           />
@@ -155,7 +148,6 @@ const DemographicInformation: React.FunctionComponent = (): React.ReactElement =
               'block w-full mt-1',
               errors.maritalStatus && 'error-field'
             )}
-            defaultValue={demographic.maritalStatus}
             {...register('maritalStatus', { required: true })}
           >
             <option value=''>Select an option</option>

@@ -7,7 +7,7 @@ import Stepper from '../components/stepper';
 import Summary from '../components/summary';
 import Terms from '../components/terms';
 import EnrollmentContext, { defaultState } from '../state/context';
-import { IDemographicState } from '../types/context';
+import { IDemographicState, IMedicalQuestionsState } from '../types/context';
 
 const Enrollment: React.FunctionComponent = (): React.ReactElement => {
   const [step, setStep] = useState<number>(0);
@@ -17,6 +17,10 @@ const Enrollment: React.FunctionComponent = (): React.ReactElement => {
   const [conditions, setConditions] = useState<Array<string>>(
     defaultState.conditions
   );
+  const [
+    medicalQuestions,
+    setMedicalQuestions,
+  ] = useState<IMedicalQuestionsState>(defaultState.medicalQuestions);
   const steps: React.FunctionComponent[] = [
     DemographicInformation,
     Conditions,
@@ -36,6 +40,8 @@ const Enrollment: React.FunctionComponent = (): React.ReactElement => {
           setDemographic,
           conditions,
           setConditions,
+          medicalQuestions,
+          setMedicalQuestions,
           step,
           setStep,
         }}

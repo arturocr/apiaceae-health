@@ -14,12 +14,28 @@ export interface IDemographicState {
   maritalStatus: string;
 }
 
+export interface IMedicalQuestionsState {
+  smokesTobacco: string;
+  smokesTobaccoDetails?: string;
+  drinksAlcohol: string;
+  drinksAlcoholDetails?: string;
+  usedIllicitDrugs: string;
+  usedIllicitDrugsDetails?: string;
+  currentMedications: string;
+  currentMedicationsDetails?: string;
+  allergies: string;
+  allergiesDetails?: string;
+  pastEvents: string;
+  pastEventsDetails?: string;
+}
+
 export interface IEnrollmentContext {
   demographic: IDemographicState;
   setDemographic: Dispatch<SetStateAction<IDemographicState>>;
   conditions: Array<string>;
   setConditions: Dispatch<SetStateAction<string[]>>;
-  medicalQuestions?: any;
+  medicalQuestions: IMedicalQuestionsState;
+  setMedicalQuestions: Dispatch<SetStateAction<IMedicalQuestionsState>>;
   termsAccepted?: boolean; //!TODO: Must not be optional
   step: number;
   setStep: Dispatch<SetStateAction<number>>;

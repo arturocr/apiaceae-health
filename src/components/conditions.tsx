@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-import { ICondition, IIterableCondition } from '../types/condition';
 import Chip from './chip';
 import rawConditions from '../data/conditions.json';
 import useEnrollment from '../hooks/useEnrollment';
+import { ICondition, IIterableCondition } from '../types/condition';
 import { camelize } from '../utils';
 
 const Conditions: React.FunctionComponent = (): React.ReactElement => {
@@ -93,7 +93,6 @@ const Conditions: React.FunctionComponent = (): React.ReactElement => {
           <>No conditions match.</>
         )}
       </div>
-
       <div className='flex justify-between mt-6'>
         <button
           className='px-6 py-2 text-base font-bold transition-colors bg-white border border-black rounded-full hover:bg-yellow-500 focus:outline-none active:bg-yellow-300'
@@ -104,7 +103,8 @@ const Conditions: React.FunctionComponent = (): React.ReactElement => {
         </button>
         <button
           className='px-6 py-2 text-base font-bold transition-colors bg-white border border-black rounded-full hover:bg-yellow-500 focus:outline-none active:bg-yellow-300'
-          type='submit'
+          onClick={() => setStep(step => step + 1)}
+          type='button'
         >
           Next
         </button>

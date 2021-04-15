@@ -22,14 +22,6 @@ const Chip: React.FunctionComponent<IChipProps> = ({
       onClick={() => onTap(condition.condition)}
       type='button'
     >
-      <input
-        checked={!!condition.selected}
-        className='hidden'
-        name='conditions'
-        readOnly
-        type='checkbox'
-        value={condition.condition}
-      />
       <span
         className={clsx(
           'flex items-center justify-center w-12 h-12 mr-2 rounded-full bg-white border-r border-b border-yellow-400',
