@@ -2,6 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
 
+import { Genders, MaritalStatuses } from '../constants/enums';
 import useEnrollment from '../hooks/useEnrollment';
 import { IDemographicState } from '../types/context';
 
@@ -58,11 +59,11 @@ const DemographicInformation: React.FunctionComponent = (): React.ReactElement =
             {...register('gender', { required: true })}
           >
             <option value=''>Select an option</option>
-            <option value='woman'>Woman</option>
-            <option value='man'>Man</option>
-            <option value='trans'>Transgender</option>
-            <option value='non-b'>Non-binary/conforming</option>
-            <option value='no-response'>Prefer not to respond</option>
+            {Genders.map(gender => (
+              <option key={gender.id} value={gender.id}>
+                {gender.name}
+              </option>
+            ))}
           </select>
         </label>
         <label className='flex-1 mt-2'>
@@ -151,13 +152,11 @@ const DemographicInformation: React.FunctionComponent = (): React.ReactElement =
             {...register('maritalStatus', { required: true })}
           >
             <option value=''>Select an option</option>
-            <option value='married'>Married</option>
-            <option value='single'>Single</option>
-            <option value='divorced'>Divorced</option>
-            <option value='life-partner'>Life Partner</option>
-            <option value='separated'>Separated</option>
-            <option value='widowed'>Widowed</option>
-            <option value='other'>Other</option>
+            {MaritalStatuses.map(status => (
+              <option key={status.id} value={status.id}>
+                {status.name}
+              </option>
+            ))}
           </select>
         </label>
       </div>

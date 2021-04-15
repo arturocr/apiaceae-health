@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import WelcomeIllustration from './welcome-illustration';
+import WelcomeIllustration from '../components/welcome-illustration';
 
 const Welcome: React.FunctionComponent = (): React.ReactElement => (
   <div className='flex flex-col items-center justify-center h-full pl-0 sm:pl-8 xl:pl-0 md:flex-row md:justify-between'>

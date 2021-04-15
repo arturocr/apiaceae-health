@@ -4,7 +4,7 @@ import Chip from './chip';
 import rawConditions from '../data/conditions.json';
 import useEnrollment from '../hooks/useEnrollment';
 import { ICondition, IIterableCondition } from '../types/condition';
-import { camelize } from '../utils';
+import { camelize } from '../constants/utils';
 
 const Conditions: React.FunctionComponent = (): React.ReactElement => {
   const { conditions, setConditions, setStep } = useEnrollment();

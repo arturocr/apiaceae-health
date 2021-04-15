@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Footer from './components/footer';
 import Header from './components/header';
-import Welcome from './components/welcome';
 import Enrollment from './pages/enrollment';
 import Thanks from './pages/thanks';
+import Welcome from './pages/welcome';
 
 const App: React.FunctionComponent = (): React.ReactElement => (
   <>
