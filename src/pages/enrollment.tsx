@@ -21,6 +21,7 @@ const Enrollment: React.FunctionComponent = (): React.ReactElement => {
     medicalQuestions,
     setMedicalQuestions,
   ] = useState<IMedicalQuestionsState>(defaultState.medicalQuestions);
+
   const steps: React.FunctionComponent[] = [
     DemographicInformation,
     Conditions,

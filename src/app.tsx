@@ -1,10 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import Enrollment from './containers/enrollment';
 import Footer from './components/footer';
 import Header from './components/header';
 import Welcome from './components/welcome';
+import Enrollment from './pages/enrollment';
+import Thanks from './pages/thanks';
 
 const App: React.FunctionComponent = (): React.ReactElement => (
   <>
@@ -17,6 +18,9 @@ const App: React.FunctionComponent = (): React.ReactElement => (
           </Route>
           <Route path='/enroll'>
             <Enrollment />
+          </Route>
+          <Route path='/thanks'>
+            <Thanks />
           </Route>
         </Switch>
       </main>

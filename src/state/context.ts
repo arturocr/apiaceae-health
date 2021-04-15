@@ -28,7 +28,6 @@ export const defaultState: IEnrollmentContext = {
     pastEvents: 'no',
   },
   setMedicalQuestions: () => {},
-  termsAccepted: false,
   step: 0,
   setStep: () => {},
 };
