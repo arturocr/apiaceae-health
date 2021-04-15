@@ -1,5 +1,4 @@
 export const Genders = [
-  { id: 'married', name: 'Married' },
   { id: 'woman', name: 'Woman' },
   { id: 'man', name: 'Man' },
   { id: 'trans', name: 'Transgender' },
